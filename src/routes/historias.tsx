@@ -75,7 +75,8 @@ const historias = [
 ];
 
 function Historias() {
-  const [destacada, ...resto] = historias;
+  const destacada = historias[0]!;
+  const resto = historias.slice(1);
 
   return (
     <div className="min-h-screen">
