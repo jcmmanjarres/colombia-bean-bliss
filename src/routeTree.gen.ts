@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HistoriasRouteImport } from './routes/historias'
+import { Route as MetodosRouteImport } from './routes/metodos'
+import { Route as VariedadesRouteImport } from './routes/variedades'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HistoriasRoute = HistoriasRouteImport.update({
+  id: '/historias',
+  path: '/historias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodosRoute = MetodosRouteImport.update({
+  id: '/metodos',
+  path: '/metodos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VariedadesRoute = VariedadesRouteImport.update({
+  id: '/variedades',
+  path: '/variedades',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/historias': typeof HistoriasRoute
+  '/metodos': typeof MetodosRoute
+  '/variedades': typeof VariedadesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/historias': typeof HistoriasRoute
+  '/metodos': typeof MetodosRoute
+  '/variedades': typeof VariedadesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/historias': typeof HistoriasRoute
+  '/metodos': typeof MetodosRoute
+  '/variedades': typeof VariedadesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/historias' | '/metodos' | '/variedades'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/historias' | '/metodos' | '/variedades'
+  id: '__root__' | '/' | '/historias' | '/metodos' | '/variedades'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HistoriasRoute: typeof HistoriasRoute
+  MetodosRoute: typeof MetodosRoute
+  VariedadesRoute: typeof VariedadesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/historias': {
+      id: '/historias'
+      path: '/historias'
+      fullPath: '/historias'
+      preLoaderRoute: typeof HistoriasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodos': {
+      id: '/metodos'
+      path: '/metodos'
+      fullPath: '/metodos'
+      preLoaderRoute: typeof MetodosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/variedades': {
+      id: '/variedades'
+      path: '/variedades'
+      fullPath: '/variedades'
+      preLoaderRoute: typeof VariedadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HistoriasRoute: HistoriasRoute,
+  MetodosRoute: MetodosRoute,
+  VariedadesRoute: VariedadesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
