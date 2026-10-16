@@ -16,7 +16,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
     router: { basepath: base },
-    pages: ["", "historias", "metodos", "variedades"].map((p) => ({ path: base + p })),
+    pages: ["", "historias/", "metodos/", "variedades/"].map((p) => ({ path: base + p })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
 });
